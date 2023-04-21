@@ -1,6 +1,9 @@
 import streamlit as st
 from utilities.queries import create_query, ask_koala
 
+hide_streamlit_style = """ <style> #MainMenu {visibility: hidden;} footer {visibility: hidden;} </style> """
+st.markdown(hide_streamlit_style, unsafe_allow_html = True)
+
 if 'input_history' not in st.session_state:
     st.session_state.input_history = []
 if 'output_history' not in st.session_state:
