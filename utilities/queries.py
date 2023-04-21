@@ -34,7 +34,7 @@ def ask_koala(data: dict) -> str:
         'Authorization': f'Bearer {st.secrets["KOALACHAT_API_KEY"]}', #TODO: import KOALACHAT_API_KEY from Streamlit environment variables
         'Content-Type': 'application/json',
     }
-    response = requests.post(url, headers = headers, data = json.dumps(data), timeout = 10)
+    response = requests.post(url, headers = headers, data = json.dumps(data), timeout = 600)
     return response.json().get('output')
 
 # url = 'https://koala.sh/api/gpt/'
