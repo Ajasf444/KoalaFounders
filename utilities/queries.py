@@ -1,9 +1,17 @@
+import streamlit as st
 import json
 import requests
-from config import KOALACHAT_API_KEY
+#from config import KOALACHAT_API_KEY
 
-def create_query(query: str, input_history: list[str], output_history: list[str], realtimedata: bool) -> dict:
-    '''Creates a query to send to KoalaChat API.'''
+#TODO: import KOALACHAT_API_KEY from Streamlit environment variables
+
+def create_query(
+    query: str, 
+    input_history: list[str] = None, 
+    output_history: list[str] = None, 
+    realtimedata: bool = False,
+) -> dict:
+    '''Creates data dictionary to be used in a KoalaChat query.'''
     if not input_history:
         input_history = []
     if not output_history:
@@ -23,7 +31,7 @@ def ask_koala(data: dict) -> str:
 
     url = 'https://koala.sh/api/gpt/'
     headers = {
-        'Authorization': f'Bearer {KOALACHAT_API_KEY}',
+        'Authorization': f'Bearer {st.secrets["KOALACHAT_API_KEY"]}', #TODO: import KOALACHAT_API_KEY from Streamlit environment variables
         'Content-Type': 'application/json',
     }
     response = requests.post(url, headers = headers, data = json.dumps(data), timeout = 10)
