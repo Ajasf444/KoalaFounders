@@ -3,6 +3,9 @@ import json
 import requests
 #from config import KOALACHAT_API_KEY
 
+hide_streamlit_style = """ <style> #MainMenu {visibility: hidden;} footer {visibility: hidden;} </style> """
+st.markdown(hide_streamlit_style, unsafe_allow_html = True)
+
 #TODO: import KOALACHAT_API_KEY from Streamlit environment variables
 
 def create_query(
