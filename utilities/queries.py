@@ -39,27 +39,3 @@ def ask_koala(data: dict) -> str:
     }
     response = requests.post(url, headers = headers, data = json.dumps(data), timeout = 600)
     return response.json().get('output')
-
-# url = 'https://koala.sh/api/gpt/'
-# headers = {
-#     'Authorization': f'Bearer {KOALACHAT_API_KEY}',
-#     'Content-Type': 'application/json',
-# }
-
-# print(headers.get('Authorization'))
-
-# data = {
-#     'input': 'My name is Bob. What about yours?',
-#     'inputHistory': ['Hello'],
-#     'outputHistory': ['Hi! What is your name?'],
-#     'realTimeData': False,
-# }
-
-# response = requests.post(url, headers = headers, data = json.dumps(data), timeout = 10)
-
-# print(response.request.headers)
-# print(response.request.body)
-
-# response_json = response.json()
-# print(response_json)
-# print(response_json.get('output'))
