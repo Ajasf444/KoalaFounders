@@ -1,0 +1,7 @@
+import streamlit as st
+
+
+def set_main_ui():
+    """Sets the UI for the app."""
+    hide_streamlit_style = """ <style> #MainMenu {visibility: hidden;} footer {visibility: hidden;} </style> """
+    st.markdown(hide_streamlit_style, unsafe_allow_html=True)

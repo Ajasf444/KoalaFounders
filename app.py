@@ -1,16 +1,14 @@
 from login import UI_login
 import streamlit as st
+from utilities.ui import set_main_ui
 from utilities.queries import create_query, ask_koala
 
+# run the login section
 name, _, username, authenticator = UI_login()
 
 
-def set_UI():
-    hide_streamlit_style = """ <style> #MainMenu {visibility: hidden;} footer {visibility: hidden;} </style> """
-    st.markdown(hide_streamlit_style, unsafe_allow_html=True)
-
-
 def main():
+    """Runs the main app."""
     if 'input_history' not in st.session_state:
         st.session_state.input_history = []
     if 'output_history' not in st.session_state:
@@ -44,7 +42,7 @@ def main():
 
 
 if st.session_state['authentication_status']:
-    set_UI()
+    set_main_ui()
     authenticator.logout('Logout', 'sidebar')
     main()
 elif st.session_state['authentication_status'] is False:
