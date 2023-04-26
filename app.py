@@ -1,3 +1,4 @@
+import asyncio
 from login import UI_login
 import streamlit as st
 from utilities.ui import set_main_ui
@@ -28,7 +29,7 @@ def main():
             data = create_query(query, st.session_state.input_history,
                                 st.session_state.output_history, False)
             with st.spinner('Awaiting response...'):
-                response = ask_koala(data)
+                response = asyncio.run(ask_koala(data))
             with placeholder.container():
                 st.markdown('KoalaChat response:')
                 st.write(response)
