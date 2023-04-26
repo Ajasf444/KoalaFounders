@@ -1,5 +1,6 @@
 import streamlit as st
 import utilities.database as db
+import time
 
 
 def set_main_ui():
@@ -10,13 +11,15 @@ def set_main_ui():
 
 def set_sidebar_ui(authenticator):
     username = st.session_state['username']
+    name = authenticator.credentials['usernames'][username]['name']
     # container widget with expanding button
     with st.sidebar.expander('Options'):
+        st.write(f'Welcome {name}!')
         # reset username button
         # reset password button
         # logout button
-        option = st.selectbox('Account Options', ['',
-                              'Reset Password', 'Reset Username'])
+        option = st.selectbox('Account Options', ['Select an Option',
+                              'Reset Password', 'Update User Details (WIP)'])
         match option:
             case '':
                 pass
@@ -27,9 +30,6 @@ def set_sidebar_ui(authenticator):
                         st.success('Password updated')
                 except Exception as e:
                     st.error(e)
-            case 'Reset Username':
-                try:
-                    st.write('baconator')
-                except Exception as e:
-                    st.error(e)
+            case 'Update User Details (WIP)':
+                pass
         authenticator.logout('Logout', 'main')

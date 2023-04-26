@@ -1,6 +1,7 @@
 import streamlit as st
 import streamlit_authenticator as stauth
 import utilities.database as db
+import time
 
 # Bring up Emoji window by pressing Windows key + .
 
