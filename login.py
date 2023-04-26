@@ -15,4 +15,5 @@ def UI_login():
 
     name, authentication_status, username = authenticator.login(
         'Login', 'main')
+
     return name, authentication_status, username, authenticator

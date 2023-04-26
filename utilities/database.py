@@ -1,4 +1,5 @@
 import deta
+import streamlit as st
 import streamlit_authenticator as stauth
 from config import DETA_KOALAFOUNDERS_DB_KEY
 
@@ -24,3 +25,19 @@ def get_credentials():
         'usernames': dict(login_info),
     }
     return credentials
+
+
+def fetch_user_info(username):
+    result = db.fetch({'username': f'{username}'})
+    return result.items[0]
+
+
+def _update(updates, key):
+    db.update(updates, key)
+
+
+def update_password(authenticator):
+    username = st.session_state['username']
+    user_info = authenticator.credentials['usernames'][username]
+    email, password = user_info['email'], user_info['password']
+    _update({'password': password}, email)

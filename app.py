@@ -1,7 +1,7 @@
 import asyncio
 from login import UI_login
 import streamlit as st
-from utilities.ui import set_main_ui
+import utilities.ui as ui
 from utilities.queries import create_query, ask_koala
 
 # run the login section
@@ -10,12 +10,13 @@ name, _, username, authenticator = UI_login()
 
 def main():
     """Runs the main app."""
+    # TODO: throw this information in an initialize history function
     if 'input_history' not in st.session_state:
         st.session_state.input_history = []
     if 'output_history' not in st.session_state:
         st.session_state.output_history = []
 
-    # TODO: environment variables
+    # TODO: check if API limit has been reached
     st.title('TCM KoalaChat Founders')
 
     # streamlit input text box
@@ -43,8 +44,8 @@ def main():
 
 
 if st.session_state['authentication_status']:
-    set_main_ui()
-    authenticator.logout('Logout', 'sidebar')
+    ui.set_main_ui()
+    ui.set_sidebar_ui(authenticator)
     main()
 elif st.session_state['authentication_status'] is False:
     st.error('Username/password is incorrect.')
