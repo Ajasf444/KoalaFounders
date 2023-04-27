@@ -1,6 +1,7 @@
 import deta
 import streamlit as st
 import streamlit_authenticator as stauth
+import time
 # from config import DETA_KOALAFOUNDERS_DB_KEY
 
 deta = deta.Deta(st.secrets['DETA_KOALAFOUNDERS_DB_KEY'])
@@ -8,6 +9,7 @@ db = deta.Base('Users')
 
 
 def _fetch_all_users():
+    time.sleep(1)
     result = db.fetch()
     return result.items
 
