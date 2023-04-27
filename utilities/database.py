@@ -54,4 +54,3 @@ def update_info(authenticator):
     db_email = db_info['key']
     # print(email, db_email)
     _update({'name': 'bacon'}, db_email)
-

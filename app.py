@@ -17,17 +17,10 @@ def main():
     if 'output_history' not in st.session_state:
         st.session_state.output_history = []
 
-    user_info = db.fetch_user_info(username)
-    queries_left = user_info['queries_left']
-    query_reset_date = user_info['query_reset_date']
-
-    # TODO: update queries left based on query_reset_date
-
-    able_to_query = queries_left > 0
-
     # TODO: check if API limit has been reached
     st.title('TCM KoalaChat Founders')
 
+    # TODO: put in query_setup()
     if able_to_query:
         st.write(f'Queries left: {queries_left}')
         query = st.text_input('Enter your query:')
