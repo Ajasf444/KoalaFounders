@@ -1,6 +1,5 @@
 altair==4.2.2
 attrs==23.1.0
-autopep8 @ file:///home/conda/feedstock_root/build_artifacts/autopep8_1677845287175/work
 bcrypt==4.0.1
 blinker==1.6.2
 cachetools==5.3.0
@@ -27,7 +26,6 @@ pandas==1.5.3
 Pillow==9.5.0
 protobuf==3.20.3
 pyarrow==11.0.0
-pycodestyle @ file:///home/conda/feedstock_root/build_artifacts/pycodestyle_1669306857274/work
 pydeck==0.8.1b0
 Pygments==2.15.1
 PyJWT==2.6.0
@@ -44,7 +42,6 @@ smmap==5.0.0
 streamlit==1.21.0
 streamlit-authenticator==0.2.1
 toml==0.10.2
-tomli @ file:///home/conda/feedstock_root/build_artifacts/tomli_1644342247877/work
 toolz==0.12.0
 tornado==6.3
 typing_extensions==4.5.0
