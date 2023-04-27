@@ -7,7 +7,8 @@ import datetime as dt
 from dateutil.relativedelta import relativedelta as rd
 
 # run the login section
-name, _, username, authenticator = UI_login()
+if 'authentication_status' not in st.session_state:
+    name, _, username, authenticator = UI_login()
 
 
 def main():

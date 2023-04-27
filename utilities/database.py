@@ -9,7 +9,7 @@ db = deta.Base('Users')
 
 
 def _fetch_all_users():
-    time.sleep(1)
+    time.sleep(10)
     result = db.fetch()
     return result.items
 
