@@ -54,3 +54,11 @@ def update_info(authenticator):
     db_email = db_info['key']
     # print(email, db_email)
     _update({'name': 'bacon'}, db_email)
+
+
+def decrement_queries_left(username):
+    user_info = fetch_user_info(username)
+    email = user_info['key']
+    queries_left = user_info['queries_left'] - 1
+    _update({'queries_left': queries_left}, email)
+    return queries_left

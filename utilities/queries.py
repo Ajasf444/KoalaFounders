@@ -78,3 +78,8 @@ async def ask_koala(data: dict) -> str:
         None, func=functools.partial(requests.post, url=url, headers=headers, data=json.dumps(data), timeout=600))
     response = await future
     return response.json().get('output')
+
+
+def decrement_queries_left(username):
+    queries_left = db.decrement_queries_left(username)
+    return queries_left
