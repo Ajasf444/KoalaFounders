@@ -8,7 +8,7 @@ import time
 # get user credentials
 
 
-def UI_startup():
+def login_startup():
     credentials = db.get_credentials()
     authenticator = stauth.Authenticate(
         credentials=credentials, cookie_name='KoalaChatFounders', key='KCF_123')
