@@ -2,9 +2,9 @@ import deta
 import streamlit as st
 import streamlit_authenticator as stauth
 import time
-# from config import DETA_KOALAFOUNDERS_DB_KEY
+from config import DETA_KOALAFOUNDERS_DB_KEY
 
-deta = deta.Deta(st.secrets['DETA_KOALAFOUNDERS_DB_KEY'])
+deta = deta.Deta(DETA_KOALAFOUNDERS_DB_KEY)
 db = deta.Base('Users')
 
 

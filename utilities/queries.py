@@ -6,7 +6,7 @@ import json
 import requests
 import utilities.database as db
 from dateutil.relativedelta import relativedelta as rd
-# from config import KOALACHAT_API_KEY
+from config import KOALACHAT_API_KEY
 
 
 def _should_query_reset(query_reset_date):
@@ -71,7 +71,7 @@ async def ask_koala(data: dict) -> str:
     url = 'https://koala.sh/api/gpt/'
     headers = {
         # TODO: import KOALACHAT_API_KEY from Streamlit environment variables
-        'Authorization': f'Bearer {st.secrets["KOALACHAT_API_KEY"]}',
+        'Authorization': f'Bearer {KOALACHAT_API_KEY}',
         'Content-Type': 'application/json',
     }
     future = loop.run_in_executor(
