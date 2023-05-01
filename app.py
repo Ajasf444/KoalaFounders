@@ -1,6 +1,6 @@
 import asyncio
 import streamlit as st
-from login import login_startup, UI_login
+import login
 from utilities import ui, queries
 from utilities import database as db
 import datetime as dt
@@ -8,12 +8,12 @@ from dateutil.relativedelta import relativedelta as rd
 
 # run the login section
 if 'authenticator' not in st.session_state:
-    login_startup()
+    login.startup()
 
 authenticator = st.session_state['authenticator']
 
 if 'authentication_status' not in st.session_state or not st.session_state['authentication_status']:
-    UI_login(authenticator)
+    login.display_UI(authenticator)
 
 username = st.session_state['username']
 name = st.session_state['name']
