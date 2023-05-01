@@ -12,7 +12,7 @@ if 'authenticator' not in st.session_state:
 
 authenticator = st.session_state['authenticator']
 
-if 'authentication_status' not in st.session_state or not st.session_state['authentication_status']:
+if not st.session_state['authentication_status']:
     login.display_UI(authenticator)
 
 username = st.session_state['username']

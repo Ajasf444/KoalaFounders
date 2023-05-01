@@ -18,6 +18,3 @@ def startup():
 def display_UI(authenticator):
     name, authentication_status, username = authenticator.login(
         'Login', 'main')
-    st.session_state['authentication_status'] = authentication_status
-    st.session_state['username'] = username
-    st.session_state['name'] = name
