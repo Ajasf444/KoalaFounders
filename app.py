@@ -29,7 +29,7 @@ def main():
 
     if able_to_query:
         with st.form('query_form'):
-            query = st.text_input('Enter your query:')
+            query = st.text_area('Enter your query:')
             submit = st.form_submit_button('Submit')
 
         if query and submit:
