@@ -1,13 +1,14 @@
 import asyncio
 import streamlit as st
-from login import UI_login
+import login
 from utilities import ui, queries
 from utilities import database as db
 import datetime as dt
+# TODO: move this to a separate file
 from dateutil.relativedelta import relativedelta as rd
 
-# run the login section
-name, _, username, authenticator = UI_login()
+# run the login layer
+authenticator, username, name, authentication_status = login.layer()
 
 
 def main():
@@ -27,9 +28,11 @@ def main():
         st.write(f'Queries left: {queries_left}')
 
     if able_to_query:
-        query = st.text_input('Enter your query:')
+        with st.form('query_form'):
+            query = st.text_input('Enter your query:')
+            submit = st.form_submit_button('Submit')
 
-        if query:
+        if query and submit:
             placeholder = st.empty()
             data = queries.create_query(query, st.session_state.input_history,
                                         st.session_state.output_history, False)
@@ -47,16 +50,14 @@ def main():
         else:
             pass
     else:
-        next_month = dt.date.today().replace(day=15) + rd(months=+1)
-        st.error(
-            f'You have reached your API limit for this month. Please try again on {next_month.strftime(r"%m/%d/%Y")}.')
+        queries.next_available_month()
 
 
-if st.session_state['authentication_status']:
+if authentication_status:
     ui.set_main_ui()
     ui.set_sidebar_ui(authenticator)
     main()
-elif st.session_state['authentication_status'] is False:
+elif authentication_status is False:
     st.error('Username/password is incorrect.')
-elif st.session_state['authentication_status'] is None:
+elif authentication_status is None:
     st.info('Please enter your username and password.')

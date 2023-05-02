@@ -6,7 +6,7 @@ import json
 import requests
 import utilities.database as db
 from dateutil.relativedelta import relativedelta as rd
-# from config import KOALACHAT_API_KEY
+from config import KOALACHAT_API_KEY
 
 
 def _should_query_reset(query_reset_date):
@@ -71,7 +71,7 @@ async def ask_koala(data: dict) -> str:
     url = 'https://koala.sh/api/gpt/'
     headers = {
         # TODO: import KOALACHAT_API_KEY from Streamlit environment variables
-        'Authorization': f'Bearer {st.secrets["KOALACHAT_API_KEY"]}',
+        'Authorization': f'Bearer {KOALACHAT_API_KEY}',
         'Content-Type': 'application/json',
     }
     future = loop.run_in_executor(
@@ -83,3 +83,9 @@ async def ask_koala(data: dict) -> str:
 def decrement_queries_left(username):
     queries_left = db.decrement_queries_left(username)
     return queries_left
+
+
+def next_available_month():
+    next_available_month = dt.date.today().replace(day=15) + rd(months=+1)
+    st.error(
+        f'You have reached your API limit for this month. Please try again on {next_available_month.strftime(r"%m/%d/%Y")}.')
