@@ -4,20 +4,11 @@ import login
 from utilities import ui, queries
 from utilities import database as db
 import datetime as dt
+# TODO: move this to a separate file
 from dateutil.relativedelta import relativedelta as rd
 
-# run the login section
-if 'authenticator' not in st.session_state:
-    login.startup()
-
-authenticator = st.session_state['authenticator']
-
-if not st.session_state['authentication_status']:
-    login.display_UI(authenticator)
-
-username = st.session_state['username']
-name = st.session_state['name']
-authentication_status = st.session_state['authentication_status']
+# run the login layer
+authenticator, username, name, authentication_status = login.layer()
 
 
 def main():
@@ -59,9 +50,7 @@ def main():
         else:
             pass
     else:
-        next_month = dt.date.today().replace(day=15) + rd(months=+1)
-        st.error(
-            f'You have reached your API limit for this month. Please try again on {next_month.strftime(r"%m/%d/%Y")}.')
+        queries.next_available_month()
 
 
 if authentication_status:

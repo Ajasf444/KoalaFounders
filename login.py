@@ -18,3 +18,18 @@ def startup():
 def display_UI(authenticator):
     name, authentication_status, username = authenticator.login(
         'Login', 'main')
+
+def layer():
+    # run the login section
+    if 'authenticator' not in st.session_state:
+        startup()
+
+    authenticator = st.session_state['authenticator']
+
+    if not st.session_state['authentication_status']:
+        display_UI(authenticator)
+
+    username = st.session_state['username']
+    name = st.session_state['name']
+    authentication_status = st.session_state['authentication_status']
+    return authenticator, username, name, authentication_status

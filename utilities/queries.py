@@ -83,3 +83,9 @@ async def ask_koala(data: dict) -> str:
 def decrement_queries_left(username):
     queries_left = db.decrement_queries_left(username)
     return queries_left
+
+
+def next_available_month():
+    next_available_month = dt.date.today().replace(day=15) + rd(months=+1)
+    st.error(
+        f'You have reached your API limit for this month. Please try again on {next_available_month.strftime(r"%m/%d/%Y")}.')
