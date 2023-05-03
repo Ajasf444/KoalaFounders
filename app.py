@@ -24,22 +24,26 @@ def main():
             queries_left = queries.decrement_queries_left(username
                                                           )
             new_responses = st.empty()
+            with new_responses.container():
+                bot_output_box = st.empty()
+                user_input_box = st.empty()
             old_responses = st.empty()
             with old_responses.container():
                 for i, user_input in enumerate(reversed(st.session_state.input_history), start=1):
-                    message(user_input, is_user=True, key=str(i))
                     message(
-                        st.session_state.output_history[-i], key=str(-i) + '_user')
-            with new_responses.container():
+                        st.session_state.output_history[-i], key=f'{-i}_koala', seed='Leo')
+                    message(user_input, is_user=True, key=f'{-i}_user')
+            with user_input_box:
                 message(query, is_user=True)
-                with queries_left_box.container():
-                    st.write(f'Queries left: {queries_left}')
+            with queries_left_box.container():
+                st.write(f'Queries left: {queries_left}')
+            with bot_output_box:
                 with st.spinner('Awaiting response...'):
                     response = asyncio.run(queries.ask_koala(data))
                 # st.markdown('KoalaChat response:')
-                message(response)
-                st.session_state.input_history.append(query)
-                st.session_state.output_history.append(response)
+                message(response, seed='Leo')
+            st.session_state.input_history.append(query)
+            st.session_state.output_history.append(response)
         else:
             pass
     else:
